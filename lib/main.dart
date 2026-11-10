@@ -207,3 +207,28 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
+
+// HALAMAN DASHBOARD (StatelessWidget)
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Dashboard')),
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.dashboard, size: 80, color: Colors.indigo),
+            SizedBox(height: 16),
+            Text(
+              'Halaman Dashboard',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
