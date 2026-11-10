@@ -63,3 +63,80 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Profil Mahasiswa'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Aplikasi Profil Mahasiswa')),
+              );
+            },
+          ),
+        ],
+      ),
+      // Drawer otomatis tombol Hamburger di pojok kiri atas
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const UserAccountsDrawerHeader(
+              accountName: Text('Azkia Alfin Zulfikar'),
+              accountEmail: Text('azkiaalfinzulfikar@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                child: Icon(Icons.person, size: 40),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.dashboard),
+              title: const Text('Dashboard'),
+              onTap: () {
+                Navigator.pop(context); // Menutup drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DashboardPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profil Saya'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CircleAvatar(
+                  radius: 50,
+                  child: Icon(Icons.person, size: 50),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Azkia Alfin Zulfikar',
+                  style: textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'NIM: 1124160251',
+                  style: textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  'Teknik Informatika (Malam)',
+                  style: textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 20),
