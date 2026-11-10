@@ -1,12 +1,12 @@
 # uts
 
-Nama: Azkia Alfin Zulfikar
-Kelas: TI SE 24 M
-NIM: 1124160251
-
 A new Flutter project.
 
 ## Getting Started
+
+- Nama: Azkia Alfin Zulfikar
+- Kelas: TI SE 24 M
+- NIM: 1124160251
 
 This project is a starting point for a Flutter application.
 

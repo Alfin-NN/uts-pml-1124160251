@@ -53,6 +53,7 @@ class InfoTile extends StatelessWidget {
     );
   }
 }
+
 // TAHAP 2 & 3: ProfilePage
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -130,18 +131,12 @@ class ProfilePage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  'NIM: 1124160251',
-                  style: textTheme.bodyMedium,
-                ),
+                Text('NIM: 1124160251', style: textTheme.bodyMedium),
                 const SizedBox(height: 2),
-                Text(
-                  'Teknik Informatika (Malam)',
-                  style: textTheme.bodyMedium,
-                ),
+                Text('Teknik Informatika (Malam)', style: textTheme.bodyMedium),
                 const SizedBox(height: 20),
-                
-                  // Card 1: Kontak (4 InfoTile)
+
+                // Card 1: Kontak (4 InfoTile)
                 const Card(
                   elevation: 2,
                   child: Column(
@@ -170,3 +165,45 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
+
+                // Card 2: Keahlian/Hobi (3 InfoTile)
+                const Card(
+                  elevation: 2,
+                  child: Column(
+                    children: [
+                      InfoTile(
+                        icon: Icons.flutter_dash,
+                        label: 'Keahlian Utama',
+                        value: 'Mobile Dev (Flutter & Dart)',
+                      ),
+                      InfoTile(
+                        icon: Icons.code,
+                        label: 'Keahlian Lain',
+                        value: 'PHP, Web Dev & OOP',
+                      ),
+                      InfoTile(
+                        icon: Icons.sports_esports,
+                        label: 'Hobi / Minat',
+                        value: 'Strategy Gaming & Reverse Engineering',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Terima kasih telah melihat profil saya'),
+            ),
+          );
+        },
+        child: const Icon(Icons.thumb_up),
+      ),
+    );
+  }
+}
