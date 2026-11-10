@@ -26,7 +26,73 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.system,
-      home: const ProfilePage(),
+      home: const DashboardPage(),
+    );
+  }
+}
+
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Dashboard Utama')),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const UserAccountsDrawerHeader(
+              accountName: Text('Azkia Alfin Zulfikar'),
+              accountEmail: Text('azkiaalfinzulfikar@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                child: Icon(Icons.person, size: 40),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.dashboard),
+              title: const Text('Dashboard'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profil Saya'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.dashboard, size: 80, color: Colors.indigo),
+            const SizedBox(height: 16),
+            Text(
+              'Selamat Datang di Dashboard',
+              style: Theme.of(context).textTheme.headlineSmall
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.person),
+              label: const Text('Lihat Profil Mahasiswa'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -92,13 +158,8 @@ class ProfilePage extends StatelessWidget {
               leading: const Icon(Icons.dashboard),
               title: const Text('Dashboard'),
               onTap: () {
-                Navigator.pop(context); // Menutup drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const DashboardPage(),
-                  ),
-                );
+                Navigator.pop(context);
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -203,31 +264,6 @@ class ProfilePage extends StatelessWidget {
           );
         },
         child: const Icon(Icons.thumb_up),
-      ),
-    );
-  }
-}
-
-// HALAMAN DASHBOARD (StatelessWidget)
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Dashboard')),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.dashboard, size: 80, color: Colors.indigo),
-            SizedBox(height: 16),
-            Text(
-              'Halaman Dashboard',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
       ),
     );
   }
