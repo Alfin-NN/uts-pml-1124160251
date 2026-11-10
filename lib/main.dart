@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-// TAHAP 1 – MaterialApp (Materi 4)
+// ValueNotifier global untuk mengubah tema tanpa StatefulWidget/setState
+final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.system);
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,34 +12,53 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Profil Azkia Alfin Zulfikar',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.indigo,
-          brightness: Brightness.dark,
-        ),
-      ),
-      themeMode: ThemeMode.system,
-      home: const DashboardPage(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (_, currentMode, __) {
+        return MaterialApp(
+          title: 'Profil Azkia Alfin Zulfikar',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+          ),
+          darkTheme: ThemeData(
+            useMaterial3: true,
+            brightness: Brightness.dark,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.indigo,
+              brightness: Brightness.dark,
+            ),
+          ),
+          themeMode: currentMode,
+          home: const DashboardPage(),
+        );
+      },
     );
   }
 }
 
+// HALAMAN DASHBOARD (StatelessWidget)
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isDark = themeNotifier.value == ThemeMode.dark;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Dashboard Utama')),
+      appBar: AppBar(
+        title: const Text('Dashboard Utama'),
+        actions: [
+          IconButton(
+            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+            tooltip: 'Ganti Tema',
+            onPressed: () {
+              themeNotifier.value = isDark ? ThemeMode.light : ThemeMode.dark;
+            },
+          ),
+        ],
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -63,6 +84,14 @@ class DashboardPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) => const ProfilePage()),
                 );
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+              title: Text(isDark ? 'Mode Terang' : 'Mode Gelap'),
+              onTap: () {
+                themeNotifier.value = isDark ? ThemeMode.light : ThemeMode.dark;
               },
             ),
           ],
@@ -120,18 +149,26 @@ class InfoTile extends StatelessWidget {
   }
 }
 
-// TAHAP 2 & 3: ProfilePage
+// TAHAP 2 & 3: ProfilePage (StatelessWidget)
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final isDark = themeNotifier.value == ThemeMode.dark;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profil Mahasiswa'),
         actions: [
+          IconButton(
+            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+            tooltip: 'Ganti Tema',
+            onPressed: () {
+              themeNotifier.value = isDark ? ThemeMode.light : ThemeMode.dark;
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.info_outline),
             onPressed: () {
@@ -142,7 +179,6 @@ class ProfilePage extends StatelessWidget {
           ),
         ],
       ),
-      // Drawer otomatis tombol Hamburger di pojok kiri atas
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -167,6 +203,14 @@ class ProfilePage extends StatelessWidget {
               title: const Text('Profil Saya'),
               onTap: () {
                 Navigator.pop(context);
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+              title: Text(isDark ? 'Mode Terang' : 'Mode Gelap'),
+              onTap: () {
+                themeNotifier.value = isDark ? ThemeMode.light : ThemeMode.dark;
               },
             ),
           ],
