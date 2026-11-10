@@ -140,3 +140,33 @@ class ProfilePage extends StatelessWidget {
                   style: textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 20),
+                
+                  // Card 1: Kontak (4 InfoTile)
+                const Card(
+                  elevation: 2,
+                  child: Column(
+                    children: [
+                      InfoTile(
+                        icon: Icons.email,
+                        label: 'Email',
+                        value: 'azkiaalfinzulfikar@gmail.com',
+                      ),
+                      InfoTile(
+                        icon: Icons.phone,
+                        label: 'Nomor HP',
+                        value: '081234567890',
+                      ),
+                      InfoTile(
+                        icon: Icons.class_,
+                        label: 'Kelas',
+                        value: 'TI SE 24 Malam',
+                      ),
+                      InfoTile(
+                        icon: Icons.code,
+                        label: 'GitHub',
+                        value: 'github.com/Alfin-NN',
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
