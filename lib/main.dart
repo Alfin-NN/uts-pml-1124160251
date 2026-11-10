@@ -53,3 +53,13 @@ class InfoTile extends StatelessWidget {
     );
   }
 }
+// TAHAP 2 & 3: ProfilePage
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Scaffold(
+      appBar: AppBar(
