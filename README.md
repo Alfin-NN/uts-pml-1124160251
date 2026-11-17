@@ -10,7 +10,7 @@ Proyek ini disusun untuk memenuhi Ujian Tengah Semester (UTS) mata kuliah **Pemr
 - **Program Studi** : Teknik Informatika
 - **Kelas** : TI SE 24 M (Malam)
 - **Repository GitHub** : [https://github.com/Alfin-NN/uts-pml-1124160251](https://github.com/Alfin-NN/uts-pml-1124160251)
-- **Link Video Presentasi YouTube** : 
+- **Link Video Presentasi YouTube** : https://youtu.be/6MhwNCJ7HpQ
 
 ---
 
